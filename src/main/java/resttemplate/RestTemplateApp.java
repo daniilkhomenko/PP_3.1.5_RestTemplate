@@ -25,13 +25,13 @@ public class RestTemplateApp {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
 
+        //Получение и установка sessionID
         String sessionID = restConnection.getAllUsersSessionID(new HttpEntity<>(httpHeaders));
         httpHeaders.set("cookie", sessionID);
 
+        //Создание юзера
         User user = new User(3L, "James", "Brown", (byte)30);
         HttpEntity<User> httpEntity = new HttpEntity<>(user, httpHeaders);
-
-        //Создание юзера
         String firsPart = restConnection.addUser(httpEntity);
 
         //Редактирование юзера
